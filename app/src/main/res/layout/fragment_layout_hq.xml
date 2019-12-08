@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rect_solid_blue_border_white_5"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!--二维码-->
+    <ImageView
+        android:id="@+id/iv_qr"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="25dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg_home" />
+
+    <!--版本选择-->
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:gravity="center"
+        android:text="正式版"
+        android:paddingRight="15dp"
+        android:drawableRight="@mipmap/arrow_down"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <!--功能-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="安装"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="下载"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="二维码"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!--帐号管理-->
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:gravity="center"
+        android:text="帐号管理"
+        android:paddingRight="15dp"
+        android:drawableRight="@mipmap/arrow_down"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/rect_solid_blue_border_white_5" />
+
+
+</LinearLayout>

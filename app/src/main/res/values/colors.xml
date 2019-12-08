@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color_F2F2F7">#F2F2F7</color>
+    <color name="black_20">#66000000</color>
+    <color name="color_228DDC">#228DDC</color>
+    <color name="color_DDDDDD">#DDDDDD</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <!--swipe_recyclerview-->
+    <color name="white_pressed">#FFCFCFCF</color>
+    <color name="red_normal">#FF0000</color>
+    <color name="red_pressed">#FF6666</color>
+    <color name="green_normal">#37C000</color>
+    <color name="green_pressed">#30A070</color>
+    <color name="gray">#d8d8d8</color>
+    <color name="font_color">#004788</color>
+
+</resources>

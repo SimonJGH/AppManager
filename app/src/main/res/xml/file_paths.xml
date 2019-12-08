@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 这个是保存拍照图片的路径,必须配置。 -->
+    <external-path
+        name="images"
+        path="Pictures" />
+    <external-path
+        name="files_root"
+        path="Android/data/com.speed.faster/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+</paths>
