@@ -54,7 +54,7 @@ public class UpdateDialog extends Dialog implements View.OnClickListener {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         tip.setVisibility(View.GONE);
         mBt_update_now.setVisibility(View.VISIBLE);
-        mBt_update_cancle.setVisibility(View.GONE);
+        mBt_update_cancle.setVisibility(View.VISIBLE);
 
         mTv_update_title.setText(updateBean.getTitle());
         mTv_update_version.setText(updateBean.getVersionName());

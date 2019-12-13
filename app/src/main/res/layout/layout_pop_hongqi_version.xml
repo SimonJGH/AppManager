@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/rect_solid_blue_border_white_5"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_version_publish"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="正式版"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:id="@+id/tv_version_test"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="测试版"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:id="@+id/tv_version_chat"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="聊聊版"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</LinearLayout>

@@ -2,10 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/black_20"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="100dp"
+        android:background="@drawable/rect_solid_white_border_blue_5"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
@@ -16,6 +18,7 @@
             android:id="@+id/img"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:src="@mipmap/loading"
             android:layout_marginTop="6dp"/>
 
         <TextView
@@ -23,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:text="正在加载"
-            android:textColor="@android:color/white"
+            android:text="正在下载"
+            android:textColor="@color/black_20"
             android:textSize="14sp"/>
     </LinearLayout>
 

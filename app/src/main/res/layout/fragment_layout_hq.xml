@@ -7,27 +7,42 @@
     android:orientation="vertical">
 
     <!--二维码-->
-    <ImageView
-        android:id="@+id/iv_qr"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="25dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/rect_solid_blue_border_white_5"
-        android:padding="2dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/bg_home" />
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <ImageView
+            android:id="@+id/iv_qr"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="25dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bg_home" />
+
+        <ImageView
+            android:id="@+id/iv_version_introduce"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:src="@mipmap/note_icon" />
+    </RelativeLayout>
 
     <!--版本选择-->
     <TextView
+        android:id="@+id/tv_choose_version"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/rect_solid_blue_border_white_5"
-        android:gravity="center"
-        android:text="正式版"
-        android:paddingRight="15dp"
         android:drawableRight="@mipmap/arrow_down"
+        android:gravity="center"
+        android:paddingRight="15dp"
+        android:text="正式版"
         android:textColor="@color/white"
         android:textSize="15sp" />
 
@@ -41,6 +56,7 @@
         android:paddingRight="25dp">
 
         <TextView
+            android:id="@+id/tv_install_apk"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -51,6 +67,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/tv_download_apk"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginLeft="25dp"
@@ -58,30 +75,32 @@
             android:layout_weight="1"
             android:background="@drawable/rect_solid_blue_border_white_5"
             android:gravity="center"
-            android:text="下载"
+            android:text="Apk下载"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/tv_download_qr"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/rect_solid_blue_border_white_5"
             android:gravity="center"
-            android:text="二维码"
+            android:text="Qr下载"
             android:textColor="@color/white"
             android:textSize="15sp" />
     </LinearLayout>
 
     <!--帐号管理-->
     <TextView
+        android:id="@+id/tv_account_manage"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:background="@drawable/rect_solid_blue_border_white_5"
-        android:gravity="center"
-        android:text="帐号管理"
-        android:paddingRight="15dp"
         android:drawableRight="@mipmap/arrow_down"
+        android:gravity="center"
+        android:paddingRight="15dp"
+        android:text="帐号管理"
         android:textColor="@color/white"
         android:textSize="15sp" />
 
@@ -89,8 +108,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         android:layout_weight="1"

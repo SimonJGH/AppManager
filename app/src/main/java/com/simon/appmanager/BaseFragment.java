@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.simon.appmanager.view.LoadingDialog;
+
 import org.xutils.x;
 
 /**
@@ -19,6 +21,7 @@ public class BaseFragment extends Fragment {
 
     private boolean injected = false;
     public Handler mHandler = new Handler();
+    public LoadingDialog mLoadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class BaseFragment extends Fragment {
         if (!injected) {
             x.view().inject(this, this.getView());
         }
+
+        mLoadingDialog = new LoadingDialog(getContext());
     }
 
     public void startActivity(Context context, Class mclass) {

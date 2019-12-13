@@ -38,7 +38,29 @@
             android:layout_height="50dp"
             android:background="@drawable/rect_solid_blue_border_white_5"
             android:gravity="center"
-            android:text="奔腾"
+            android:text="奔腾苑"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_guide_bt_teacher"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="奔腾苑讲师端"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_guide_bt_manager"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="奔腾苑管理端"
             android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:textSize="16sp" />
