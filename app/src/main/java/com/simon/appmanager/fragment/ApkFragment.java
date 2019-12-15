@@ -360,11 +360,16 @@ public class ApkFragment extends BaseFragment {
      * 下载apk
      */
     public void downloadApk(String url, String fileName) {
+        Log.i("Simon","下载apk = "+url);
         String saveFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + fileName + ".apk";
+        File filedd=new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/");
+        Log.i("Simon","filedd = "+filedd.exists());
 
         String brand = android.os.Build.BRAND;
         RequestParams requestParams = new RequestParams(url);
         requestParams.setSaveFilePath(saveFilePath);
+        requestParams.setReadTimeout(100000);
+        requestParams.setConnectTimeout(100000);
         x.http().get(requestParams, new Callback.CommonCallback<File>() {
             @Override
             public void onSuccess(File file) {
@@ -378,6 +383,7 @@ public class ApkFragment extends BaseFragment {
             public void onError(Throwable ex, boolean isOnCallback) {
                 mLoadingDialog.dismiss();
                 ToastUtils.getInstance().showShortToast(ex.toString());
+                Log.i("Simon","下载apk = "+ex.toString());
             }
 
             @Override
