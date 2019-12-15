@@ -9,11 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.simon.appmanager.fragment.BtFragment;
-import com.simon.appmanager.fragment.BtManagerFragment;
-import com.simon.appmanager.fragment.BtTeacherFragment;
-import com.simon.appmanager.fragment.HqFragment;
-import com.simon.appmanager.fragment.WmFragment;
+import com.simon.appmanager.fragment.ApkFragment;
 import com.simon.appmanager.utils.ToastUtils;
 import com.simon.appmanager.utils.XActivityStack;
 
@@ -42,30 +38,34 @@ public class HomeActivity extends BaseActivity {
 
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fl_container, new HqFragment());
+        ApkFragment hqFragment = new ApkFragment();
+        hqFragment.setAppName("红旗", "hq_");
+        ft.replace(R.id.fl_container, hqFragment);
         ft.commit();
     }
 
-    @Event(value = {R.id.tv_guide_hq, R.id.tv_guide_bt,R.id.tv_guide_bt_teacher,R.id.tv_guide_bt_manager, R.id.tv_guide_wm})
+    @Event(value = {R.id.tv_guide_hq, R.id.tv_guide_bt, R.id.tv_guide_bt_teacher, R.id.tv_guide_bt_manager, R.id.tv_guide_wm})
     private void clickButton(View view) {
         FragmentTransaction ft = fm.beginTransaction();
+        ApkFragment hqFragment = new ApkFragment();
         switch (view.getId()) {
             case R.id.tv_guide_hq:
-                ft.replace(R.id.fl_container, new HqFragment());
+                hqFragment.setAppName("红旗","hq_");
                 break;
             case R.id.tv_guide_bt:
-                ft.replace(R.id.fl_container, new BtFragment());
+                hqFragment.setAppName("奔腾苑","bty_");
                 break;
             case R.id.tv_guide_bt_teacher:
-                ft.replace(R.id.fl_container,  new BtTeacherFragment());
+                hqFragment.setAppName("奔腾苑讲师端","bty_teacher_");
                 break;
             case R.id.tv_guide_bt_manager:
-                ft.replace(R.id.fl_container,  new BtManagerFragment());
+                hqFragment.setAppName("奔腾苑管理端","bty_manager_");
                 break;
             case R.id.tv_guide_wm:
-                ft.replace(R.id.fl_container, new WmFragment());
+                hqFragment.setAppName("维玛荟客","wmhk_");
                 break;
         }
+        ft.replace(R.id.fl_container, hqFragment);
         ft.commit();
         mDrawerlayout.closeDrawers();
     }
