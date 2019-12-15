@@ -18,5 +18,6 @@
     <color name="green_pressed">#30A070</color>
     <color name="gray">#d8d8d8</color>
     <color name="font_color">#004788</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

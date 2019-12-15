@@ -28,12 +28,15 @@ import com.simon.appmanager.adapter.CommonAdapter;
 import com.simon.appmanager.adapter.CommonViewHolder;
 import com.simon.appmanager.https.ApiConstanse;
 import com.simon.appmanager.https.CommonCallBack;
+import com.simon.appmanager.https.DbManagers;
 import com.simon.appmanager.https.HttpUtils;
+import com.simon.appmanager.https.entity.AccountInfo;
 import com.simon.appmanager.https.entity.ApkListOutputBean;
 import com.simon.appmanager.https.entity.AppInfo;
 import com.simon.appmanager.https.entity.CommonInputBean;
 import com.simon.appmanager.update.UpdateBean;
 import com.simon.appmanager.update.UpdateVersion;
+import com.simon.appmanager.utils.DialogInputUtils;
 import com.simon.appmanager.utils.DialogUtils;
 import com.simon.appmanager.utils.PopupWindowUtils;
 import com.simon.appmanager.utils.QRCodeUtil;
@@ -74,8 +77,10 @@ public class ApkFragment extends BaseFragment {
     @ViewInject(R.id.tv_app_name)
     TextView mTv_app_name;
 
+    @ViewInject(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
     private Bitmap qrCodeWithLogo;//二维码
-    private String accountType = "";
     private String appName = "";//app名称
     private String apkName = "";//apk名称
     private String apkType = "";//apk版本
@@ -84,12 +89,14 @@ public class ApkFragment extends BaseFragment {
     private String date = "";//版本更新时间
     private String fileUrl = "";//文件下载地址
     private String apkCode = "";//apk版本号
+    private int accountEditType = 0;//帐号编辑类型 0-add 1-edit 2-del
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mTv_app_name.setText(appName);
+        initAccount();
     }
 
     /**
@@ -277,10 +284,10 @@ public class ApkFragment extends BaseFragment {
                 mTv_choose_version_code.setText(dataBean.getVresion());
 
                 //二维码
-                Bitmap bitmap =null;
-                switch (apkName){
+                Bitmap bitmap = null;
+                switch (apkName) {
                     case "hq_":
-                         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_hq);
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_hq);
                         break;
                     case "bty_":
                         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_bt);
@@ -446,28 +453,131 @@ public class ApkFragment extends BaseFragment {
         inflate.findViewById(R.id.tv_account_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accountType = "hq_add";
+                accountEditType = 0;
                 mTv_account_manage.setText("帐号新增");
+                DialogInputUtils.showInputDialog(getActivity(), new DialogInputUtils.DialogOnClickListener() {
+                    @Override
+                    public void onClick() {
+                        ToastUtils.getInstance().showShortToast("帐号新增成功!");
+                        initAccount();
+                    }
+                }, "帐号新增", apkName, null, Gravity.BOTTOM, 1.0, 0.0);
+                initAccount();
                 PopupWindowUtils.getInstance().closePop();
             }
         });
         inflate.findViewById(R.id.tv_account_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accountType = "hq_edit";
+                accountEditType = 1;
                 mTv_account_manage.setText("帐号编辑");
+                initAccount();
                 PopupWindowUtils.getInstance().closePop();
             }
         });
         inflate.findViewById(R.id.tv_account_del).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accountType = "hq_del";
+                accountEditType = 2;
                 mTv_account_manage.setText("帐号删除");
+                initAccount();
                 PopupWindowUtils.getInstance().closePop();
             }
         });
 
         PopupWindowUtils.getInstance().createScalePopupWindow(getContext(), inflate, mTv_account_manage);
+    }
+
+    /**
+     * 初始化帐号信息
+     */
+    private void initAccount() {
+        List<AccountInfo> accountInfos = DbManagers.getInstance().queryUserInfo(apkName);
+        if (accountInfos == null)
+            return;
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(llm);
+        // 如果Item够简单，高度是确定的，打开FixSize将提高性能
+        mRecyclerView.setHasFixedSize(true);
+        // 设置Item默认动画，加也行，不加也行
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setNestedScrollingEnabled(false);
+
+        CommonAdapter mCommonAdapter = new CommonAdapter(getContext(), R.layout.lauout_account_item, accountInfos);
+        mCommonAdapter.setItemDataListener(new CommonAdapter.ItemDataListener<AccountInfo>() {
+            @Override
+            public void setItemData(CommonViewHolder holder, AccountInfo dataBean) {
+                TextView tv_accouint_name = holder.getView(R.id.tv_accouint_name);
+                ImageView iv_account_edit = holder.getView(R.id.iv_account_edit);
+
+                if (accountEditType == 0) {
+                    iv_account_edit.setVisibility(View.INVISIBLE);
+                } else if (accountEditType == 1) {
+                    iv_account_edit.setVisibility(View.VISIBLE);
+                    iv_account_edit.setImageResource(R.mipmap.ic_edit);
+                    iv_account_edit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DialogInputUtils.showInputDialog(getActivity(), new DialogInputUtils.DialogOnClickListener() {
+                                @Override
+                                public void onClick() {
+                                    ToastUtils.getInstance().showShortToast("帐号编辑成功!");
+                                    initAccount();
+                                }
+                            }, "帐号编辑", apkName, dataBean, Gravity.BOTTOM, 1.0, 0.0);
+                        }
+                    });
+                } else if (accountEditType == 2) {
+                    iv_account_edit.setVisibility(View.VISIBLE);
+                    iv_account_edit.setImageResource(R.mipmap.ic_delete);
+                    iv_account_edit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DbManagers.getInstance().delUserInfo(dataBean.getAccount_id());
+                            initAccount();
+                        }
+                    });
+                }
+                tv_accouint_name.setText(dataBean.getNickname());
+            }
+        });
+
+        mCommonAdapter.setOnItemClickListener(new CommonAdapter.OnItemClickListener() {
+
+            @Override
+            public void setOnItemClickListener(View view, int position) {
+                AccountInfo accountInfo = accountInfos.get(position);
+                Intent intent = new Intent();
+                intent.setAction("app.intent.action.VIEW");
+                intent.addCategory("android.intent.category.DEFAULT");
+                Bundle bundle = new Bundle();
+                bundle.putString("USERNAME", accountInfo.getUsername());
+                bundle.putString("PASSWORD", accountInfo.getPassword());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+            @Override
+            public void setOnItemLongClickListener(View view, int position) {
+                 /*<activity android:name=".JumpTestActivity">
+                    <intent-filter>
+                        <!-- 自定义action -->
+                        <action android:name="app.intent.action.VIEW"/>
+                        <category android:name="android.intent.category.DEFAULT"/>
+                    </intent-filter>
+                </activity>*/
+
+                /*Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                if (bundle != null) {
+                    String data = bundle.getString("data");
+                    Log.e("JumpTestActivity", data);
+                }*/
+            }
+        });
+
+        mCommonAdapter.setHasStableIds(true);
+        mRecyclerView.setAdapter(mCommonAdapter);
     }
 }

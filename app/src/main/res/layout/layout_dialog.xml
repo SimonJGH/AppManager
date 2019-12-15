@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_solid_blue_border_white_5"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_account_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="帐号新增"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/et_account_nickname"
+        style="@style/MyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:hint="请输入昵称"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_account_username"
+        style="@style/MyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:hint="请输入帐号"
+        android:paddingLeft="10dp"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_account_password"
+        style="@style/MyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:hint="请输入密码"
+        android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM.~!@#$%^*_-"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_account_submit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="25dp"
+        android:text="提交"
+        android:gravity="center"
+        android:background="@drawable/rect_solid_blue_border_white_5"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>
