@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppManager</string>
+    <string name="app_name">App管理端</string>
 
     <string name="dialog_current_version">当前版本</string>
     <string name="dialog_version_content">版本详情</string>

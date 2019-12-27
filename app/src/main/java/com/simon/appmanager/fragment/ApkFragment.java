@@ -293,13 +293,13 @@ public class ApkFragment extends BaseFragment {
                         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_bt);
                         break;
                     case "bty_teacher_":
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_hq);
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_bt);
                         break;
                     case "bty_manager_":
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_hq);
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_bt_manager);
                         break;
                     case "wmhk_":
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_hq);
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_wm);
                         break;
                 }
                 fileUrl = dataBean.getFile();
