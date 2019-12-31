@@ -36,32 +36,10 @@
             android:id="@+id/tv_guide_bt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rect_solid_blue_border_white_5"
             android:gravity="center"
             android:text="奔腾苑"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_guide_bt_teacher"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rect_solid_blue_border_white_5"
-            android:gravity="center"
-            android:text="奔腾苑讲师端"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_guide_bt_manager"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rect_solid_blue_border_white_5"
-            android:gravity="center"
-            android:text="奔腾苑管理端"
-            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -69,11 +47,60 @@
             android:id="@+id/tv_guide_wm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rect_solid_blue_border_white_5"
             android:gravity="center"
             android:text="维玛荟客"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_guide_bt_teacher"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="奔腾苑讲师端"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_guide_bt_manager"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="奔腾苑管理端"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_guide_other_manager"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="其它App"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_guide_open_folder"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rect_solid_blue_border_white_5"
+            android:gravity="center"
+            android:text="下载文件"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

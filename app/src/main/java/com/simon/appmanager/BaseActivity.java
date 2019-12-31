@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.simon.appmanager.utils.XActivityStack;
 
 import org.xutils.x;
+
+import java.io.File;
 
 @SuppressWarnings("all")
 public class BaseActivity extends AppCompatActivity {
@@ -32,16 +35,13 @@ public class BaseActivity extends AppCompatActivity {
 
     //请求权限
     public void showPermissions() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if ( ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)
                 != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_NETWORK_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.INTERNET,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.ACCESS_NETWORK_STATE,
                     Manifest.permission.CHANGE_NETWORK_STATE,
@@ -59,6 +59,13 @@ public class BaseActivity extends AppCompatActivity {
             case PERMISSION_REQ_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // PERMISSION_GRANTED
+                    String saveFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/A黑识科技/";
+                    File file = new File(saveFilePath);
+                    if (!file.exists()) {
+                        file.mkdirs();
+                    }
+                }else{
+                    showPermissions();
                 }
                 break;
             default:
@@ -81,7 +88,7 @@ public class BaseActivity extends AppCompatActivity {
         context.overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
 
-    public void finishActivity(){
+    public void finishActivity() {
         finish();
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }

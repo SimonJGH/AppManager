@@ -144,8 +144,13 @@ public class ApkFragment extends BaseFragment {
                 if (TextUtils.isEmpty(apkCode)) {
                     ToastUtils.getInstance().showShortToast("请选择apk版本号!");
                 } else {
-                    mLoadingDialog.show();
-                    downloadApk(fileUrl, apkName + apkType + apkCode);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_TEXT, "友情提示：不建议直接提供客户下载链接，这上面有我们服务器域名，建议提供用户二维码或者先下载到本地，再微信转发apk！" + fileUrl);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(Intent.createChooser(intent, "分享"));
+//                    mLoadingDialog.show();
+//                    downloadApk(fileUrl, apkName + apkType + "_" + apkCode);
                 }
                 break;
             case R.id.tv_download_qr:
@@ -153,7 +158,7 @@ public class ApkFragment extends BaseFragment {
                     ToastUtils.getInstance().showShortToast("请选择apk版本号!");
                 } else {
                     mLoadingDialog.show();
-                    saveBitmapToGallery(qrCodeWithLogo, apkName + apkType + apkCode);
+                    saveBitmapToGallery(qrCodeWithLogo, apkName + apkType + "_" + apkCode);
                 }
                 break;
             case R.id.tv_account_manage:
@@ -300,6 +305,9 @@ public class ApkFragment extends BaseFragment {
                     case "wmhk_":
                         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_wm);
                         break;
+                    case "other_":
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+                        break;
                 }
                 fileUrl = dataBean.getFile();
                 qrCodeWithLogo = QRCodeUtil.createQRCodeWithLogo(fileUrl, bitmap);
@@ -359,10 +367,8 @@ public class ApkFragment extends BaseFragment {
      * 下载apk
      */
     public void downloadApk(String url, String fileName) {
-        Log.i("Simon","下载apk = "+url);
-        String saveFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + fileName + ".apk";
-        File filedd=new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/");
-        Log.i("Simon","filedd = "+filedd.exists());
+        Log.i("Simon", "下载apk = " + url);
+        String saveFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/A黑识科技/" + fileName + ".apk";
 
         String brand = android.os.Build.BRAND;
         RequestParams requestParams = new RequestParams(url);
@@ -382,7 +388,6 @@ public class ApkFragment extends BaseFragment {
             public void onError(Throwable ex, boolean isOnCallback) {
                 mLoadingDialog.dismiss();
                 ToastUtils.getInstance().showShortToast(ex.toString());
-                Log.i("Simon","下载apk = "+ex.toString());
             }
 
             @Override
