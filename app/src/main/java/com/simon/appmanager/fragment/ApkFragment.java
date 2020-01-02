@@ -229,6 +229,8 @@ public class ApkFragment extends BaseFragment {
             public void onClick(View v) {
                 apkType = "publish";
                 mTv_choose_apk_type.setText("正式版");
+                apkCode = "";
+                mTv_choose_version_code.setText("请选择");
                 initData();
                 PopupWindowUtils.getInstance().closePop();
             }
@@ -238,6 +240,8 @@ public class ApkFragment extends BaseFragment {
             public void onClick(View v) {
                 apkType = "test";
                 mTv_choose_apk_type.setText("测试版");
+                apkCode = "";
+                mTv_choose_version_code.setText("请选择");
                 initData();
                 PopupWindowUtils.getInstance().closePop();
             }
@@ -247,6 +251,8 @@ public class ApkFragment extends BaseFragment {
             public void onClick(View v) {
                 apkType = "chat";
                 mTv_choose_apk_type.setText("聊聊版");
+                apkCode = "";
+                mTv_choose_version_code.setText("请选择");
                 initData();
                 PopupWindowUtils.getInstance().closePop();
             }
@@ -306,7 +312,7 @@ public class ApkFragment extends BaseFragment {
                         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_app_wm);
                         break;
                     case "other_":
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_other);
                         break;
                 }
                 fileUrl = dataBean.getFile();
@@ -559,7 +565,26 @@ public class ApkFragment extends BaseFragment {
             public void setOnItemClickListener(View view, int position) {
                 AccountInfo accountInfo = accountInfos.get(position);
                 Intent intent = new Intent();
-                intent.setAction("app.intent.action.VIEW");
+                switch (apkName){
+                    case "hq_":
+                        intent.setAction("app.intent.action.HONGQI");
+                        break;
+                    case "bty_":
+                        intent.setAction("app.intent.action.BENTENG");
+                        break;
+                    case "bty_teacher_":
+                        intent.setAction("app.intent.action.TEACHER");
+                        break;
+                    case "bty_manager_":
+                        intent.setAction("app.intent.action.MANAGER");
+                        break;
+                    case "wmhk_":
+                        intent.setAction("app.intent.action.WEIMA");
+                        break;
+                    case "other_":
+                        intent.setAction("app.intent.action.OTHER");
+                        break;
+                }
                 intent.addCategory("android.intent.category.DEFAULT");
                 Bundle bundle = new Bundle();
                 bundle.putString("USERNAME", accountInfo.getUsername());
